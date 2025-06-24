@@ -385,4 +385,53 @@ function handleEnterKey(e, editor) { /* ... */ }
 - [ ] Add copy-to-clipboard functionality
 - [ ] Make responsive for mobile devices
 
-This theme ensures consistency across all your utility tools while maintaining a professional, modern appearance that users will recognize and trust. 
+This theme ensures consistency across all your utility tools while maintaining a professional, modern appearance that users will recognize and trust.
+
+## 🌐 Domain Configuration
+
+### Production Domain
+**Primary Domain:** `https://proximity-tools.com/`
+
+### SEO Meta Tags Template
+When creating new utility tools, always use the following URL structure:
+- **Canonical URL:** `https://proximity-tools.com/[tool-name].html`
+- **Open Graph URL:** `https://proximity-tools.com/[tool-name].html`
+- **Twitter URL:** `https://proximity-tools.com/[tool-name].html`
+- **Schema.org URL:** `https://proximity-tools.com/[tool-name].html`
+- **Preview Images:** `https://proximity-tools.com/[tool-name]-preview.png`
+
+### Standard Meta Tags
+```html
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://proximity-tools.com/[tool-name].html">
+<meta property="og:title" content="[Tool Name] - Free Online [Tool Type]">
+<meta property="og:description" content="[Tool description]">
+<meta property="og:image" content="https://proximity-tools.com/[tool-name]-preview.png">
+<meta property="og:site_name" content="[Tool Name] Tool">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://proximity-tools.com/[tool-name].html">
+<meta property="twitter:title" content="[Tool Name] - Free Online [Tool Type]">
+<meta property="twitter:description" content="[Tool description]">
+<meta property="twitter:image" content="https://proximity-tools.com/[tool-name]-preview.png">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://proximity-tools.com/[tool-name].html">
+```
+
+### JSON-LD Schema Template
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "[Tool Name]",
+  "description": "[Tool description]",
+  "url": "https://proximity-tools.com/[tool-name].html",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web Browser"
+}
+```
+
+**Important:** Always replace `[tool-name]` with the actual tool filename and update all bracketed placeholders with appropriate content. 

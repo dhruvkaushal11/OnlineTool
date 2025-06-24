@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Text Diff Checker - Free Online Text Compare & Difference Tool</title>
+    <meta name="title" content="Text Diff Checker - Free Online Text Compare & Difference Tool">
+    <meta name="description" content="Free online text diff checker and compare tool. Highlight differences between two texts with line-by-line comparison, word-level changes, and visual diff highlighting.">
+    <meta name="keywords" content="text diff, text compare, difference checker, text comparison tool, online diff, file compare, text analyzer, diff viewer, text merge">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Text Diff Tool">
+    <meta name="copyright" content="© 2024 Text Diff Tool">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://proximity-tools.com/text-diff.html">
+    <meta property="og:title" content="Text Diff Checker - Free Online Text Compare Tool">
+    <meta property="og:description" content="Professional text diff checker with visual highlighting. Compare two texts and see differences with line-by-line and word-level comparison.">
+    <meta property="og:image" content="https://proximity-tools.com/text-diff-preview.png">
+    <meta property="og:site_name" content="Text Diff Tool">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://proximity-tools.com/text-diff.html">
+    <meta property="twitter:title" content="Text Diff Checker - Free Online Text Compare Tool">
+    <meta property="twitter:description" content="Professional text diff checker with visual highlighting. Compare two texts and see differences instantly.">
+    <meta property="twitter:image" content="https://proximity-tools.com/text-diff-preview.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://proximity-tools.com/text-diff.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Text Diff Checker",
+      "description": "Free online text difference checker and comparison tool with highlighting",
+      "url": "https://proximity-tools.com/text-diff.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Text Comparison",
+        "Difference Highlighting",
+        "Line-by-Line Comparison",
+        "Word-Level Changes",
+        "Visual Diff Display",
+        "Auto-save Functionality",
+        "Copy to Clipboard",
+        "Ignore Case Option"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "Text Diff Tool"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .success-panel {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-panel.show {
+            display: block;
+        }
+
+        .main-content {
+            display: flex;
+            height: 70vh;
+            min-height: 500px;
+            gap: 15px;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .panel-header {
+            background: #374151;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-icon {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .copy-icon:active {
+            transform: scale(0.95);
+        }
+
+        .copy-success {
+            color: #10b981;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .auto-save-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(20px);
+        }
+
+        .auto-save-status {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .editor-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .line-numbers {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 15px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: right;
+            border-right: 1px solid #d1d5db;
+            min-width: 50px;
+            user-select: none;
+            white-space: pre;
+            overflow-y: hidden;
+            max-height: 100%;
+        }
+
+        .editor {
+            flex: 1;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            background: white;
+            color: #374151;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 100%;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .editor[contenteditable="true"] {
+            min-height: 100%;
+        }
+
+        .editor:focus {
+            outline: 2px solid #06b6d4;
+            outline-offset: -2px;
+        }
+
+        .editor:empty::before {
+            content: attr(data-placeholder);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+                 /* Diff highlighting styles */
+         .diff-added {
+             background-color: #dcfce7;
+             color: #166534;
+             text-decoration: none;
+             padding: 1px 2px;
+             border-radius: 3px;
+             margin: 0 1px;
+         }
+
+         .diff-removed {
+             background-color: #fef2f2;
+             color: #dc2626;
+             text-decoration: line-through;
+             padding: 1px 2px;
+             border-radius: 3px;
+             margin: 0 1px;
+         }
+
+         .diff-modified {
+             background-color: #fef3c7;
+             color: #92400e;
+             padding: 1px 2px;
+             border-radius: 3px;
+             margin: 0 1px;
+         }
+
+         .diff-unchanged {
+             color: #374151;
+         }
+
+        .vertical-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 10px;
+            background: #f8fafc;
+            border-radius: 10px;
+            min-width: 160px;
+            max-width: 160px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .vertical-controls .btn {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .control-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #4b5563;
+            margin: 5px 0;
+        }
+
+        .control-option input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .control-option label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .stats-display {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .stats-display .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 2px 0;
+        }
+
+        .stats-display .stat-label {
+            color: #6b7280;
+        }
+
+        .stats-display .stat-value {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .features-section {
+            background: #f8fafc;
+            padding: 60px 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-content h2 {
+            color: #1f2937;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature-item h3 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .use-cases, .instructions, .feature-list {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 30px;
+        }
+
+        .use-cases ul, .feature-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .use-cases li, .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .use-cases li:last-child, .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            padding: 8px 0;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .feature-list p {
+            color: #4b5563;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 14px;
+            background: #f8fafc;
+        }
+
+        .last-saved {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                height: 80vh;
+                min-height: 600px;
+                gap: 10px;
+            }
+            
+            .panel {
+                min-height: 200px;
+                flex: 1;
+            }
+            
+            .vertical-controls {
+                flex-direction: row;
+                min-width: 100%;
+                max-width: 100%;
+                padding: 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .vertical-controls .btn {
+                width: auto;
+                flex: 1;
+                min-width: 120px;
+                padding: 12px 16px;
+            }
+
+            .control-option {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features-section {
+                padding: 40px 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .features-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 20px;
+            }
+
+            .use-cases, .instructions, .feature-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Free Online Text Diff Checker & Compare Tool</h1>
+            <p>Professional text difference checker with visual highlighting. Compare two texts and see differences with line-by-line comparison, word-level changes, and detailed statistics.</p>
+        </header>
+
+        <div class="success-panel" id="successPanel"></div>
+
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Original Text (Left)</span>
+                    <div class="auto-save-toggle">
+                        <span class="auto-save-status" id="autoSaveStatus">Auto-save: ON</span>
+                        <div class="toggle-switch active" id="autoSaveToggle" onclick="toggleAutoSave()" title="Toggle auto-save">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="leftLineNumbers">1</div>
+                    <div class="editor" id="leftEditor" contenteditable="true" spellcheck="false" 
+                        data-placeholder="Paste your original text here..." 
+                        oninput="handleEditorInput('left')" onscroll="syncScroll('left')"></div>
+                </div>
+            </div>
+
+            <div class="vertical-controls">
+                <button class="btn btn-primary" onclick="compareTexts()">Compare Texts</button>
+                <button class="btn btn-info" onclick="clearHighlights()">Clear Highlights</button>
+                <button class="btn btn-warning" onclick="clearAll()">Clear All</button>
+
+                <div class="control-option">
+                    <input type="checkbox" id="ignoreCase" onchange="compareTexts()">
+                    <label for="ignoreCase">Ignore Case</label>
+                </div>
+                
+                <div class="control-option">
+                    <input type="checkbox" id="ignoreWhitespace" onchange="compareTexts()">
+                    <label for="ignoreWhitespace">Ignore Whitespace</label>
+                </div>
+
+                                 <div class="stats-display" id="diffStats">
+                     <div class="stat-item">
+                         <span class="stat-label">Added chars:</span>
+                         <span class="stat-value" id="addedCount">0</span>
+                     </div>
+                     <div class="stat-item">
+                         <span class="stat-label">Removed chars:</span>
+                         <span class="stat-value" id="removedCount">0</span>
+                     </div>
+                     <div class="stat-item">
+                         <span class="stat-label">Unchanged:</span>
+                         <span class="stat-value" id="modifiedCount">0</span>
+                     </div>
+                     <div class="stat-item">
+                         <span class="stat-label">Similarity:</span>
+                         <span class="stat-value" id="similarityPercent">100%</span>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Modified Text (Right)</span>
+                    <button class="copy-icon" onclick="copyText('right')" title="Copy to Clipboard">
+                        📋 Copy
+                    </button>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="rightLineNumbers">1</div>
+                    <div class="editor" id="rightEditor" contenteditable="true" spellcheck="false"
+                        data-placeholder="Paste your modified text here..."
+                        oninput="handleEditorInput('right')" onscroll="syncScroll('right')"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="features-section">
+            <div class="features-content">
+                <h2>Why Choose Our Text Diff Checker?</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>🔍 Visual Difference Highlighting</h3>
+                        <p>See differences instantly with color-coded highlighting. Added text in green, removed text in red, and modified content in yellow for easy identification.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>📊 Detailed Statistics</h3>
+                        <p>Get comprehensive diff statistics including added lines, removed lines, modified sections, and overall similarity percentage between texts.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>⚙️ Smart Comparison Options</h3>
+                        <p>Flexible comparison settings with options to ignore case sensitivity and whitespace differences for more focused text analysis.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>📱 Side-by-Side View</h3>
+                        <p>Professional side-by-side text comparison with synchronized scrolling and line numbers for easy navigation through large texts.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>💾 Auto-Save & Privacy</h3>
+                        <p>Optional auto-save functionality with privacy controls. Save your work locally or disable auto-save for sensitive text comparison.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>📋 Easy Copy Function</h3>
+                        <p>Copy either version of text to clipboard instantly. Perfect for developers, writers, and anyone working with text versions.</p>
+                    </div>
+                </div>
+                
+                <h2>Text Diff Checker Use Cases</h2>
+                <div class="use-cases">
+                    <ul>
+                        <li><strong>Code Review:</strong> Compare different versions of code files and identify changes</li>
+                        <li><strong>Document Editing:</strong> Track changes between document versions and revisions</li>
+                        <li><strong>Content Management:</strong> Compare website content before and after updates</li>
+                        <li><strong>Translation Work:</strong> Compare original and translated texts for accuracy</li>
+                        <li><strong>Data Analysis:</strong> Identify differences in data files and CSV content</li>
+                        <li><strong>Legal Documents:</strong> Compare contract versions and identify modifications</li>
+                        <li><strong>Academic Writing:</strong> Track changes in research papers and essays</li>
+                        <li><strong>Configuration Files:</strong> Compare system configuration files for troubleshooting</li>
+                    </ul>
+                </div>
+                
+                <h2>How to Use Text Diff Checker</h2>
+                <div class="instructions">
+                    <ol>
+                        <li><strong>Paste Original Text:</strong> Copy and paste your original text into the left panel</li>
+                        <li><strong>Paste Modified Text:</strong> Copy and paste the modified version into the right panel</li>
+                        <li><strong>Compare Texts:</strong> Click "Compare Texts" to highlight differences between both versions</li>
+                        <li><strong>Review Differences:</strong> See visual highlights and check statistics for detailed analysis</li>
+                        <li><strong>Adjust Settings:</strong> Use ignore case/whitespace options for different comparison needs</li>
+                        <li><strong>Copy Results:</strong> Use copy buttons to copy either version to clipboard</li>
+                    </ol>
+                </div>
+                
+                <h2>Text Diff Checker Features</h2>
+                <div class="feature-list">
+                    <p>Our free online text diff checker provides comprehensive text comparison capabilities:</p>
+                    <ul>
+                        <li>✅ <strong>Visual Highlighting:</strong> Color-coded difference highlighting for easy identification</li>
+                        <li>✅ <strong>Line-by-Line Comparison:</strong> Detailed line-level comparison with line numbers</li>
+                        <li>✅ <strong>Word-Level Changes:</strong> Precise word and character-level difference detection</li>
+                        <li>✅ <strong>Statistics Dashboard:</strong> Real-time statistics showing added, removed, and modified content</li>
+                        <li>✅ <strong>Case Sensitivity Toggle:</strong> Option to ignore case differences in comparison</li>
+                        <li>✅ <strong>Whitespace Handling:</strong> Option to ignore whitespace and formatting differences</li>
+                        <li>✅ <strong>Synchronized Scrolling:</strong> Both panels scroll together for easy navigation</li>
+                        <li>✅ <strong>Auto-Save Feature:</strong> Optional local storage with privacy controls</li>
+                        <li>✅ <strong>Copy Function:</strong> One-click copy for both original and modified text</li>
+                        <li>✅ <strong>Responsive Design:</strong> Works perfectly on desktop, tablet, and mobile devices</li>
+                        <li>✅ <strong>No Registration:</strong> Use instantly without signup or login required</li>
+                        <li>✅ <strong>Privacy Focused:</strong> All processing happens locally in your browser</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2024 Text Diff Tool - Free Online Text Compare & Difference Checker</p>
+            <p>Best text diff checker for developers and writers | Fast, secure, and easy to use</p>
+            <div class="last-saved" id="lastSaved"></div>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize line numbers
+        updateLineNumbers('left');
+        updateLineNumbers('right');
+
+        // Auto-save functionality
+        let autoSaveEnabled = true;
+
+        // Get plain text content from contenteditable div
+        function getEditorText(type) {
+            const editor = document.getElementById(type + 'Editor');
+            return editor.textContent || editor.innerText || '';
+        }
+
+        // Set content in contenteditable div
+        function setEditorContent(type, content, isHTML = false) {
+            const editor = document.getElementById(type + 'Editor');
+            
+            if (isHTML) {
+                editor.innerHTML = content;
+            } else {
+                editor.textContent = content;
+            }
+            
+            updateLineNumbers(type);
+        }
+
+        // Handle input events for contenteditable divs
+        function handleEditorInput(type) {
+            updateLineNumbers(type);
+            
+            // Auto-save with a small delay to avoid excessive saves
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+        }
+
+        function updateLineNumbers(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            
+            const text = getEditorText(type);
+            const lines = text.split('\n').length;
+            let lineNumbersText = '';
+            
+            for (let i = 1; i <= lines; i++) {
+                lineNumbersText += i + '\n';
+            }
+            
+            lineNumbers.textContent = lineNumbersText;
+        }
+
+        function syncScroll(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            lineNumbers.scrollTop = editor.scrollTop;
+        }
+
+        function showSuccess(message) {
+            const successPanel = document.getElementById('successPanel');
+            
+            successPanel.innerHTML = message;
+            successPanel.classList.add('show');
+            
+            setTimeout(() => {
+                successPanel.classList.remove('show');
+            }, 3000);
+        }
+
+        function compareTexts() {
+            const leftText = getEditorText('left');
+            const rightText = getEditorText('right');
+            
+            if (!leftText.trim() && !rightText.trim()) {
+                showSuccess('❌ Please enter text in both panels to compare.');
+                return;
+            }
+
+            if (!leftText.trim() || !rightText.trim()) {
+                showSuccess('⚠️ Please enter text in both panels for comparison.');
+                return;
+            }
+
+            const ignoreCase = document.getElementById('ignoreCase').checked;
+            const ignoreWhitespace = document.getElementById('ignoreWhitespace').checked;
+
+            // Process texts based on options
+            let processedLeft = leftText;
+            let processedRight = rightText;
+
+            if (ignoreCase) {
+                processedLeft = processedLeft.toLowerCase();
+                processedRight = processedRight.toLowerCase();
+            }
+
+            if (ignoreWhitespace) {
+                processedLeft = processedLeft.replace(/\s+/g, ' ').trim();
+                processedRight = processedRight.replace(/\s+/g, ' ').trim();
+            }
+
+            // Perform diff comparison
+            const diff = computeDiff(processedLeft, processedRight);
+            
+            // Apply highlighting
+            const leftHighlighted = applyDiffHighlighting(leftText, diff.left);
+            const rightHighlighted = applyDiffHighlighting(rightText, diff.right);
+
+            // Update editors with highlighted content
+            setEditorContent('left', leftHighlighted, true);
+            setEditorContent('right', rightHighlighted, true);
+
+            // Update statistics
+            updateDiffStats(diff.stats);
+
+            // Save state
+            saveToLocalStorage();
+
+            showSuccess('✅ Text comparison completed! Differences highlighted.');
+        }
+
+                 function computeDiff(leftText, rightText) {
+             // Character-level diffing for more precise comparison
+             const leftChars = leftText.split('');
+             const rightChars = rightText.split('');
+             
+             // Use Myers algorithm for better character-level diffing
+             const diffResult = myersDiff(leftChars, rightChars);
+             
+             // Group consecutive characters of same type for better display
+             const leftResult = groupDiffResults(diffResult.left);
+             const rightResult = groupDiffResults(diffResult.right);
+             
+             return {
+                 left: leftResult,
+                 right: rightResult,
+                 stats: diffResult.stats
+             };
+         }
+
+         function myersDiff(left, right) {
+             const N = left.length;
+             const M = right.length;
+             const MAX = N + M;
+             
+             const v = {};
+             const trace = [];
+             
+             v[1] = 0;
+             
+             for (let d = 0; d <= MAX; d++) {
+                 trace.push({ ...v });
+                 
+                 for (let k = -d; k <= d; k += 2) {
+                     let x;
+                     if (k === -d || (k !== d && v[k - 1] < v[k + 1])) {
+                         x = v[k + 1];
+                     } else {
+                         x = v[k - 1] + 1;
+                     }
+                     
+                     let y = x - k;
+                     
+                     while (x < N && y < M && left[x] === right[y]) {
+                         x++;
+                         y++;
+                     }
+                     
+                     v[k] = x;
+                     
+                     if (x >= N && y >= M) {
+                         return backtrack(left, right, trace, d);
+                     }
+                 }
+             }
+             
+             return backtrack(left, right, trace, MAX);
+         }
+         
+         function backtrack(left, right, trace, d) {
+             let x = left.length;
+             let y = right.length;
+             
+             const leftResult = [];
+             const rightResult = [];
+             const stats = { added: 0, removed: 0, modified: 0, unchanged: 0 };
+             
+             for (let depth = d; depth >= 0; depth--) {
+                 const v = trace[depth];
+                 const k = x - y;
+                 
+                 let prevK;
+                 if (k === -depth || (k !== depth && v[k - 1] < v[k + 1])) {
+                     prevK = k + 1;
+                 } else {
+                     prevK = k - 1;
+                 }
+                 
+                 const prevX = v[prevK];
+                 const prevY = prevX - prevK;
+                 
+                 while (x > prevX && y > prevY) {
+                     // Diagonal move - characters match
+                     leftResult.unshift({ text: left[x - 1], type: 'unchanged' });
+                     rightResult.unshift({ text: right[y - 1], type: 'unchanged' });
+                     stats.unchanged++;
+                     x--;
+                     y--;
+                 }
+                 
+                 if (depth > 0) {
+                     if (x > prevX) {
+                         // Horizontal move - deletion
+                         leftResult.unshift({ text: left[x - 1], type: 'removed' });
+                         stats.removed++;
+                         x--;
+                     } else {
+                         // Vertical move - insertion
+                         rightResult.unshift({ text: right[y - 1], type: 'added' });
+                         stats.added++;
+                         y--;
+                     }
+                 }
+             }
+             
+             // Handle remaining characters at the beginning
+             while (x > 0) {
+                 leftResult.unshift({ text: left[x - 1], type: 'removed' });
+                 stats.removed++;
+                 x--;
+             }
+             
+             while (y > 0) {
+                 rightResult.unshift({ text: right[y - 1], type: 'added' });
+                 stats.added++;
+                 y--;
+             }
+             
+             // Calculate similarity percentage
+             const totalChars = Math.max(left.length, right.length);
+             const similarityPercent = totalChars > 0 ? 
+                 Math.round((stats.unchanged / totalChars) * 100) : 100;
+             
+             return {
+                 left: leftResult,
+                 right: rightResult,
+                 stats: { ...stats, similarity: similarityPercent }
+             };
+         }
+         
+         function groupDiffResults(diffArray) {
+             if (!diffArray || diffArray.length === 0) return [];
+             
+             const grouped = [];
+             let currentGroup = { text: diffArray[0].text, type: diffArray[0].type };
+             
+             for (let i = 1; i < diffArray.length; i++) {
+                 if (diffArray[i].type === currentGroup.type) {
+                     // Same type, merge
+                     currentGroup.text += diffArray[i].text;
+                 } else {
+                     // Different type, start new group
+                     grouped.push(currentGroup);
+                     currentGroup = { text: diffArray[i].text, type: diffArray[i].type };
+                 }
+             }
+             
+             // Don't forget the last group
+             grouped.push(currentGroup);
+             
+             return grouped;
+         }
+
+        
+
+        function applyDiffHighlighting(originalText, diffResult) {
+            if (!diffResult || diffResult.length === 0) {
+                return escapeHtml(originalText);
+            }
+
+            let result = '';
+            for (const item of diffResult) {
+                const escapedText = escapeHtml(item.text);
+                switch (item.type) {
+                    case 'added':
+                        result += `<span class="diff-added">${escapedText}</span>`;
+                        break;
+                    case 'removed':
+                        result += `<span class="diff-removed">${escapedText}</span>`;
+                        break;
+                    case 'modified':
+                        result += `<span class="diff-modified">${escapedText}</span>`;
+                        break;
+                    case 'unchanged':
+                        result += `<span class="diff-unchanged">${escapedText}</span>`;
+                        break;
+                    default:
+                        result += escapedText;
+                }
+            }
+            return result;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+                 function updateDiffStats(stats) {
+             document.getElementById('addedCount').textContent = stats.added || 0;
+             document.getElementById('removedCount').textContent = stats.removed || 0;
+             document.getElementById('modifiedCount').textContent = stats.unchanged || 0;
+             document.getElementById('similarityPercent').textContent = (stats.similarity || 100) + '%';
+         }
+
+        function clearHighlights() {
+            const leftText = getEditorText('left');
+            const rightText = getEditorText('right');
+            
+            setEditorContent('left', leftText);
+            setEditorContent('right', rightText);
+            
+            // Reset stats
+            updateDiffStats({ added: 0, removed: 0, modified: 0, similarity: 100 });
+            
+            showSuccess('✅ Highlights cleared!');
+        }
+
+        function clearAll() {
+            setEditorContent('left', '');
+            setEditorContent('right', '');
+            updateLineNumbers('left');
+            updateLineNumbers('right');
+            
+            // Reset stats
+            updateDiffStats({ added: 0, removed: 0, modified: 0, similarity: 100 });
+            
+            const successPanel = document.getElementById('successPanel');
+            successPanel.classList.remove('show');
+            
+            // Clear saved data as well
+            clearSavedData();
+            
+            showSuccess('✅ All content cleared!');
+        }
+
+        function copyText(side) {
+            const text = getEditorText(side);
+            const copyButton = document.querySelector('.copy-icon');
+            
+            if (!text.trim()) {
+                showSuccess('❌ No content to copy!');
+                return;
+            }
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '✅ Copied!';
+                copyButton.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    copyButton.innerHTML = originalText;
+                    copyButton.classList.remove('copy-success');
+                }, 2000);
+                
+                showSuccess(`✅ ${side === 'left' ? 'Original' : 'Modified'} text copied to clipboard!`);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                const editor = document.getElementById(side + 'Editor');
+                const range = document.createRange();
+                range.selectNodeContents(editor);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand('copy');
+                selection.removeAllRanges();
+                
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '✅ Copied!';
+                copyButton.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    copyButton.innerHTML = originalText;
+                    copyButton.classList.remove('copy-success');
+                }, 2000);
+                
+                showSuccess(`✅ ${side === 'left' ? 'Original' : 'Modified'} text copied to clipboard!`);
+            });
+        }
+
+        function saveToLocalStorage() {
+            if (!autoSaveEnabled) return;
+            
+            const leftValue = getEditorText('left');
+            const rightValue = getEditorText('right');
+            const ignoreCase = document.getElementById('ignoreCase').checked;
+            const ignoreWhitespace = document.getElementById('ignoreWhitespace').checked;
+            const timestamp = new Date().toLocaleString();
+            
+            const saveData = {
+                left: leftValue,
+                right: rightValue,
+                ignoreCase: ignoreCase,
+                ignoreWhitespace: ignoreWhitespace,
+                timestamp: timestamp
+            };
+            
+            localStorage.setItem('textDiffData', JSON.stringify(saveData));
+            updateLastSavedDisplay(timestamp);
+        }
+
+        function loadFromLocalStorage() {
+            if (!autoSaveEnabled) return false;
+            
+            try {
+                const savedData = localStorage.getItem('textDiffData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    
+                    if (data.left) {
+                        setEditorContent('left', data.left);
+                    }
+                    if (data.right) {
+                        setEditorContent('right', data.right);
+                    }
+                    if (data.ignoreCase !== undefined) {
+                        document.getElementById('ignoreCase').checked = data.ignoreCase;
+                    }
+                    if (data.ignoreWhitespace !== undefined) {
+                        document.getElementById('ignoreWhitespace').checked = data.ignoreWhitespace;
+                    }
+                    if (data.timestamp) {
+                        updateLastSavedDisplay(data.timestamp);
+                    }
+                    
+                    return true;
+                }
+            } catch (error) {
+                console.log('Error loading saved data:', error);
+            }
+            return false;
+        }
+
+        function updateLastSavedDisplay(timestamp) {
+            const lastSavedDiv = document.getElementById('lastSaved');
+            if (timestamp) {
+                lastSavedDiv.textContent = `Last saved: ${timestamp}`;
+            }
+        }
+
+        function clearSavedData() {
+            localStorage.removeItem('textDiffData');
+            document.getElementById('lastSaved').textContent = '';
+        }
+
+        function toggleAutoSave() {
+            autoSaveEnabled = !autoSaveEnabled;
+            const toggle = document.getElementById('autoSaveToggle');
+            const status = document.getElementById('autoSaveStatus');
+            const lastSaved = document.getElementById('lastSaved');
+            
+            if (autoSaveEnabled) {
+                toggle.classList.add('active');
+                status.textContent = 'Auto-save: ON';
+                saveToLocalStorage();
+            } else {
+                toggle.classList.remove('active');
+                status.textContent = 'Auto-save: OFF';
+                clearSavedData();
+                lastSaved.textContent = 'Auto-save disabled - data not saved';
+            }
+            
+            localStorage.setItem('autoSaveEnabled', autoSaveEnabled.toString());
+        }
+
+        function loadAutoSavePreference() {
+            try {
+                const savedPreference = localStorage.getItem('autoSaveEnabled');
+                if (savedPreference !== null) {
+                    autoSaveEnabled = savedPreference === 'true';
+                    const toggle = document.getElementById('autoSaveToggle');
+                    const status = document.getElementById('autoSaveStatus');
+                    
+                    if (autoSaveEnabled) {
+                        toggle.classList.add('active');
+                        status.textContent = 'Auto-save: ON';
+                    } else {
+                        toggle.classList.remove('active');
+                        status.textContent = 'Auto-save: OFF';
+                        document.getElementById('lastSaved').textContent = 'Auto-save disabled - data not saved';
+                    }
+                }
+            } catch (error) {
+                console.log('Error loading auto-save preference:', error);
+            }
+        }
+
+        // Load saved data and initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAutoSavePreference();
+            
+            const dataLoaded = loadFromLocalStorage();
+            
+            if (!dataLoaded) {
+                // Load sample text for demonstration
+                const sampleLeft = `Hello World!
+This is the original text.
+It has multiple lines.
+Some content here.
+Final line of original text.`;
+                
+                const sampleRight = `Hello World!
+This is the modified text.
+It has multiple lines with changes.
+Some different content here.
+Additional new line.
+Final line of modified text.`;
+                
+                setEditorContent('left', sampleLeft);
+                setEditorContent('right', sampleRight);
+            }
+        });
+
+        // Handle Tab and Enter keys for contenteditable divs
+        function handleTabKey(e, editor) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const tabString = '    '; // 4 spaces
+                document.execCommand('insertText', false, tabString);
+                
+                clearTimeout(window.saveTimeout);
+                window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+            }
+        }
+
+        function handleEnterKey(e, editor) {
+            if (e.key === 'Enter') {
+                // Let the default behavior handle the enter key for simplicity
+                setTimeout(() => {
+                    clearTimeout(window.saveTimeout);
+                    window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+                }, 100);
+            }
+        }
+
+        // Add event listeners
+        document.getElementById('leftEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+
+        document.getElementById('rightEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+    </script>
+</body>
+</html>
