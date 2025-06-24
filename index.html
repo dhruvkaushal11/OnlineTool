@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>JSON Formatter - Free Online JSON Validator, Beautifier & Editor Tool</title>
+    <meta name="title" content="JSON Formatter - Free Online JSON Validator, Beautifier & Editor Tool">
+    <meta name="description" content="Free online JSON formatter, validator, and beautifier. Format, validate, minify JSON with line numbers, error detection, and smart editing. Best JSON editor tool 2024.">
+    <meta name="keywords" content="json formatter, json validator, json beautifier, json editor, json parser, json minifier, json pretty print, online json tool, free json formatter, json lint, json viewer">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="JSON Formatter Tool">
+    <meta name="copyright" content="© 2024 JSON Formatter Tool">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoursite.com/">
+    <meta property="og:title" content="JSON Formatter - Free Online JSON Validator & Beautifier">
+    <meta property="og:description" content="Professional JSON formatter with smart editing, validation, and beautification. Format JSON online with line numbers and error detection.">
+    <meta property="og:image" content="https://yoursite.com/json-formatter-preview.png">
+    <meta property="og:site_name" content="JSON Formatter Tool">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yoursite.com/">
+    <meta property="twitter:title" content="JSON Formatter - Free Online JSON Validator & Beautifier">
+    <meta property="twitter:description" content="Professional JSON formatter with smart editing, validation, and beautification. Format JSON online with line numbers and error detection.">
+    <meta property="twitter:image" content="https://yoursite.com/json-formatter-preview.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yoursite.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "JSON Formatter",
+      "description": "Free online JSON formatter, validator, and beautifier tool with smart editing features",
+      "url": "https://yoursite.com",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "JSON Validation",
+        "JSON Beautification", 
+        "JSON Minification",
+        "Error Detection with Line Numbers",
+        "Smart Code Editing",
+        "Auto-save Functionality",
+        "Copy to Clipboard",
+        "Customizable Indentation"
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "JSON Formatter Tool"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #0ea5e9;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+
+
+        .main-content {
+            display: flex;
+            height: 70vh;
+            min-height: 500px;
+            gap: 15px;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        .panel-header {
+            background: #374151;
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-icon {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .copy-icon:active {
+            transform: scale(0.95);
+        }
+
+        .copy-success {
+            color: #10b981;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .auto-save-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 40px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #10b981;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(20px);
+        }
+
+        .auto-save-status {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .editor-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .syntax-highlight-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            white-space: pre;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .line-numbers {
+            background: #f3f4f6;
+            color: #6b7280;
+            padding: 15px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: right;
+            border-right: 1px solid #d1d5db;
+            min-width: 50px;
+            user-select: none;
+            white-space: pre;
+            overflow-y: hidden;
+            max-height: 100%;
+        }
+
+        .line-number-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 21px;
+            padding-right: 5px;
+        }
+
+        .fold-icon {
+            width: 12px;
+            height: 12px;
+            cursor: pointer;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: color 0.2s ease;
+            margin-right: 3px;
+        }
+
+        .fold-icon:hover {
+            color: #374151;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+
+        .fold-icon.collapsed::before {
+            content: '▶';
+        }
+
+        .fold-icon.expanded::before {
+            content: '▼';
+        }
+
+        .line-number-text {
+            flex: 1;
+            text-align: right;
+        }
+
+        .collapsed-line {
+            display: none;
+        }
+
+        .editor {
+            flex: 1;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            background: white;
+            color: #374151;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 100%;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .editor[contenteditable="true"] {
+            min-height: 100%;
+        }
+
+        .editor:focus {
+            outline: 2px solid #06b6d4;
+            outline-offset: -2px;
+        }
+
+        .editor:empty::before {
+            content: attr(data-placeholder);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+        /* Ensure both input and output editors have consistent wrapping */
+        #inputEditor, #outputEditor {
+            overflow-x: hidden !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+            word-break: break-all !important;
+            max-width: 100% !important;
+        }
+
+        /* JSON Syntax Highlighting */
+        .json-key {
+            color: #000000;
+            font-weight: 600;
+        }
+
+        .json-string {
+            color: #22c55e;
+        }
+
+        .json-number {
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .json-boolean {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .json-null {
+            color: #ef4444;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .json-punctuation {
+            color: #6b7280;
+        }
+
+        .json-bracket {
+            color: #8b5cf6;
+            font-weight: 600;
+        }
+
+        .editor-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .indent-guides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre;
+            color: transparent;
+            overflow: hidden;
+        }
+
+        .indent-guide-line {
+            position: absolute;
+            width: 1px;
+            background-color: #e5e7eb;
+            opacity: 0.6;
+        }
+
+        .vertical-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 10px;
+            background: #f8fafc;
+            border-radius: 10px;
+            min-width: 160px;
+            max-width: 160px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .vertical-controls .btn {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .vertical-controls .tab-select {
+            margin: 0;
+            width: 100%;
+            padding: 8px 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .error-panel {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: none;
+        }
+
+        .error-panel.show {
+            display: block;
+        }
+
+        .success-panel {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-panel.show {
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 14px;
+            background: #f8fafc;
+        }
+
+        .last-saved {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 5px;
+        }
+
+        .features-section {
+            background: #f8fafc;
+            padding: 60px 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-content h2 {
+            color: #1f2937;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .feature-item h3 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .use-cases, .instructions, .feature-list {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 30px;
+        }
+
+        .use-cases ul, .feature-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .use-cases li, .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .use-cases li:last-child, .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            padding: 8px 0;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .feature-list p {
+            color: #4b5563;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                height: 80vh;
+                min-height: 600px;
+                gap: 10px;
+            }
+            
+            .panel {
+                min-height: 200px;
+                flex: 1;
+            }
+            
+            .vertical-controls {
+                flex-direction: row;
+                min-width: 100%;
+                max-width: 100%;
+                padding: 15px;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .vertical-controls .btn {
+                width: auto;
+                flex: 1;
+                min-width: 120px;
+                padding: 12px 16px;
+            }
+            
+            .vertical-controls .tab-select {
+                width: 100%;
+                margin-top: 5px;
+            }
+
+            .features-section {
+                padding: 40px 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .features-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 20px;
+            }
+
+            .use-cases, .instructions, .feature-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Free Online JSON Formatter & Validator</h1>
+            <p>Professional JSON formatter, validator, and beautifier with smart editing features. Format, validate, and minify JSON with line numbers, error detection, and auto-save functionality.</p>
+        </header>
+
+
+
+        <div class="success-panel" id="successPanel"></div>
+
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Input JSON</span>
+                    <div class="auto-save-toggle">
+                        <span class="auto-save-status" id="autoSaveStatus">Auto-save: ON</span>
+                        <div class="toggle-switch active" id="autoSaveToggle" onclick="toggleAutoSave()" title="Toggle auto-save">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="inputLineNumbers">1</div>
+                    <div class="editor" id="inputEditor" contenteditable="true" spellcheck="false" 
+                        data-placeholder="Paste your JSON here..." 
+                        oninput="handleEditorInput('input')" onscroll="syncScroll('input')"></div>
+                </div>
+            </div>
+
+            <div class="vertical-controls">
+                <button class="btn btn-info" onclick="validateJSON()">Validate JSON</button>
+                <button class="btn btn-primary" onclick="beautifyJSON()">Beautify</button>
+                <button class="btn btn-secondary" onclick="minifyJSON()">Minify</button>
+                <button class="btn btn-warning" onclick="clearAll()">Clear All</button>
+
+                <select class="tab-select" id="tabSize2" onchange="updateTabSize2()">
+                    <option value="2">2 Tab Space</option>
+                    <option value="4">4 Tab Space</option>
+                    <option value="6">6 Tab Space</option>
+                    <option value="8">8 Tab Space</option>
+                </select>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Output JSON</span>
+                    <button class="copy-icon" onclick="copyOutput()" title="Copy to Clipboard">
+                        📋 Copy
+                    </button>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="outputLineNumbers">1</div>
+                    <div class="editor" id="outputEditor" contenteditable="true" spellcheck="false"
+                        data-placeholder="Formatted JSON will appear here..."
+                        oninput="handleEditorInput('output')" onscroll="syncScroll('output')"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="features-section">
+            <div class="features-content">
+                <h2>Why Choose Our JSON Formatter?</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>🎯 Smart JSON Validation</h3>
+                        <p>Instantly validate JSON syntax with precise error detection. Our JSON validator shows exact line and column numbers for syntax errors, making debugging fast and easy.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>✨ Professional JSON Beautifier</h3>
+                        <p>Format and beautify JSON with customizable indentation (2, 4, 6, or 8 spaces). Transform minified JSON into readable, well-structured format instantly.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>🔧 Advanced JSON Editor</h3>
+                        <p>Code editor experience with smart Tab and Enter key handling. Automatic indentation maintenance makes editing large JSON files effortless.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>💾 Auto-Save & Privacy</h3>
+                        <p>Optional auto-save functionality with privacy controls. Save your work locally or disable auto-save for sensitive JSON data processing.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>📋 One-Click Copy</h3>
+                        <p>Copy formatted JSON to clipboard instantly. Perfect for developers working with APIs, configuration files, and data processing.</p>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h3>📱 Responsive Design</h3>
+                        <p>Works perfectly on desktop, tablet, and mobile devices. Access our JSON formatter anywhere, anytime with full functionality.</p>
+                    </div>
+                </div>
+                
+                <h2>JSON Formatter Use Cases</h2>
+                <div class="use-cases">
+                    <ul>
+                        <li><strong>API Development:</strong> Format and validate API responses and request bodies</li>
+                        <li><strong>Configuration Files:</strong> Edit and validate JSON configuration files</li>
+                        <li><strong>Data Analysis:</strong> Format JSON data for better readability and analysis</li>
+                        <li><strong>Debugging:</strong> Identify and fix JSON syntax errors with precise error reporting</li>
+                        <li><strong>Learning:</strong> Understand JSON structure with proper indentation and formatting</li>
+                        <li><strong>Code Review:</strong> Make JSON data readable for team collaboration</li>
+                    </ul>
+                </div>
+                
+                <h2>How to Use JSON Formatter</h2>
+                <div class="instructions">
+                    <ol>
+                        <li><strong>Paste JSON:</strong> Copy and paste your JSON data into the left input panel</li>
+                        <li><strong>Choose Action:</strong> Click Validate, Beautify, or Minify based on your needs</li>
+                        <li><strong>View Results:</strong> See formatted JSON in the right output panel</li>
+                        <li><strong>Copy Results:</strong> Use the copy button to copy formatted JSON to clipboard</li>
+                        <li><strong>Customize:</strong> Adjust tab spacing (2-8 spaces) for your preferred formatting style</li>
+                    </ol>
+                </div>
+                
+                <h2>JSON Formatter Features</h2>
+                <div class="feature-list">
+                    <p>Our free online JSON formatter provides comprehensive JSON processing capabilities:</p>
+                    <ul>
+                        <li>✅ <strong>JSON Validation:</strong> Real-time syntax checking with error reporting</li>
+                        <li>✅ <strong>JSON Beautification:</strong> Format minified JSON for human readability</li>
+                        <li>✅ <strong>JSON Minification:</strong> Compress JSON by removing unnecessary whitespace</li>
+                        <li>✅ <strong>Line Numbers:</strong> Navigate large JSON files with synchronized line numbers</li>
+                        <li>✅ <strong>Error Detection:</strong> Precise error location with line and column numbers</li>
+                        <li>✅ <strong>Smart Editing:</strong> Tab and Enter key handling like professional code editors</li>
+                        <li>✅ <strong>Auto-Save:</strong> Optional local storage with privacy controls</li>
+                        <li>✅ <strong>Copy Function:</strong> One-click copy to clipboard functionality</li>
+                        <li>✅ <strong>Responsive Design:</strong> Works on all devices and screen sizes</li>
+                        <li>✅ <strong>No Registration:</strong> Use instantly without signup or login</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2024 JSON Formatter Tool - Free Online JSON Validator, Beautifier & Editor</p>
+            <p>Best JSON formatter for developers | Fast, secure, and easy to use</p>
+            <div class="last-saved" id="lastSaved"></div>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize line numbers
+        updateLineNumbers('input');
+        updateLineNumbers('output');
+
+        // Syntax highlighting function
+        function applySyntaxHighlighting(jsonText) {
+            if (!jsonText.trim()) return '';
+            
+            try {
+                // Parse and stringify to ensure valid JSON
+                const parsed = JSON.parse(jsonText);
+                const formatted = JSON.stringify(parsed, null, 2);
+                return highlightJSON(formatted);
+            } catch (error) {
+                // If invalid JSON, return as plain text
+                return escapeHtml(jsonText);
+            }
+        }
+
+        function highlightJSON(jsonText) {
+            // Escape HTML first
+            let result = jsonText
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+            
+            // Use a single pass with a comprehensive regex
+            result = result.replace(
+                /("(?:[^"\\]|\\.)*")|(\b-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b)|(\btrue\b|\bfalse\b)|(\bnull\b)|([{}[\],:])/g,
+                function(match, string, number, boolean, nullValue, punctuation, offset, fullString) {
+                    if (string) {
+                        // Check if this string is followed by a colon (it's a key)
+                        const afterMatch = fullString.substring(offset + match.length);
+                        const nextNonSpace = afterMatch.match(/^\s*(.)/);
+                        if (nextNonSpace && nextNonSpace[1] === ':') {
+                            return '<span class="json-key">' + string + '</span>';
+                        } else {
+                            return '<span class="json-string">' + string + '</span>';
+                        }
+                    } else if (number) {
+                        return '<span class="json-number">' + number + '</span>';
+                    } else if (boolean) {
+                        return '<span class="json-boolean">' + boolean + '</span>';
+                    } else if (nullValue) {
+                        return '<span class="json-null">' + nullValue + '</span>';
+                    } else if (punctuation) {
+                        if (punctuation === '{' || punctuation === '}' || punctuation === '[' || punctuation === ']') {
+                            return '<span class="json-bracket">' + punctuation + '</span>';
+                        } else {
+                            return '<span class="json-punctuation">' + punctuation + '</span>';
+                        }
+                    }
+                    return match;
+                }
+            );
+            
+            return result;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        // Get plain text content from contenteditable div
+        function getEditorText(type) {
+            const editor = document.getElementById(type + 'Editor');
+            return editor.textContent || editor.innerText || '';
+        }
+
+        // Set content in contenteditable div
+        function setEditorContent(type, content, highlighted = false) {
+            const editor = document.getElementById(type + 'Editor');
+            
+            if (highlighted) {
+                editor.innerHTML = content;
+            } else {
+                editor.textContent = content;
+            }
+            
+            // Update line numbers after setting content
+            updateLineNumbers(type);
+        }
+
+        // Handle input events for contenteditable divs
+        function handleEditorInput(type) {
+            updateLineNumbers(type);
+            
+            // Auto-save with a small delay to avoid excessive saves
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+        }
+
+        // Auto-save functionality
+        let autoSaveEnabled = true;
+
+        function saveToLocalStorage() {
+            if (!autoSaveEnabled) return; // Don't save if auto-save is disabled
+            
+            const inputValue = getEditorText('input');
+            const outputValue = getEditorText('output');
+            const tabSize = document.getElementById('tabSize2').value;
+            const timestamp = new Date().toLocaleString();
+            
+            const saveData = {
+                input: inputValue,
+                output: outputValue,
+                tabSize: tabSize,
+                timestamp: timestamp
+            };
+            
+            localStorage.setItem('jsonFormatterData', JSON.stringify(saveData));
+            updateLastSavedDisplay(timestamp);
+        }
+
+        function loadFromLocalStorage() {
+            if (!autoSaveEnabled) return false; // Don't load if auto-save is disabled
+            
+            try {
+                const savedData = localStorage.getItem('jsonFormatterData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    
+                    // Restore input and output
+                    if (data.input) {
+                        setEditorContent('input', data.input);
+                        updateLineNumbers('input');
+                    }
+                    if (data.output) {
+                        setEditorContent('output', data.output);
+                        updateLineNumbers('output');
+                    }
+                    if (data.tabSize) {
+                        document.getElementById('tabSize2').value = data.tabSize;
+                    }
+                    if (data.timestamp) {
+                        updateLastSavedDisplay(data.timestamp);
+                    }
+                    
+                    return true; // Data was loaded
+                }
+            } catch (error) {
+                console.log('Error loading saved data:', error);
+            }
+            return false; // No data loaded
+        }
+
+        function updateLastSavedDisplay(timestamp) {
+            const lastSavedDiv = document.getElementById('lastSaved');
+            if (timestamp) {
+                lastSavedDiv.textContent = `Last saved: ${timestamp}`;
+            }
+        }
+
+        function clearSavedData() {
+            localStorage.removeItem('jsonFormatterData');
+            document.getElementById('lastSaved').textContent = '';
+        }
+
+        function toggleAutoSave() {
+            autoSaveEnabled = !autoSaveEnabled;
+            const toggle = document.getElementById('autoSaveToggle');
+            const status = document.getElementById('autoSaveStatus');
+            const lastSaved = document.getElementById('lastSaved');
+            
+            if (autoSaveEnabled) {
+                toggle.classList.add('active');
+                status.textContent = 'Auto-save: ON';
+                // Save current state immediately when enabled
+                saveToLocalStorage();
+            } else {
+                toggle.classList.remove('active');
+                status.textContent = 'Auto-save: OFF';
+                // Clear saved data when disabled
+                clearSavedData();
+                lastSaved.textContent = 'Auto-save disabled - data not saved';
+            }
+            
+            // Save the toggle state itself
+            localStorage.setItem('autoSaveEnabled', autoSaveEnabled.toString());
+        }
+
+        function loadAutoSavePreference() {
+            try {
+                const savedPreference = localStorage.getItem('autoSaveEnabled');
+                if (savedPreference !== null) {
+                    autoSaveEnabled = savedPreference === 'true';
+                    const toggle = document.getElementById('autoSaveToggle');
+                    const status = document.getElementById('autoSaveStatus');
+                    
+                    if (autoSaveEnabled) {
+                        toggle.classList.add('active');
+                        status.textContent = 'Auto-save: ON';
+                    } else {
+                        toggle.classList.remove('active');
+                        status.textContent = 'Auto-save: OFF';
+                        document.getElementById('lastSaved').textContent = 'Auto-save disabled - data not saved';
+                    }
+                }
+            } catch (error) {
+                console.log('Error loading auto-save preference:', error);
+            }
+        }
+
+
+
+        function updateLineNumbers(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            
+            const text = getEditorText(type);
+            const lines = text.split('\n').length;
+            let lineNumbersText = '';
+            
+            for (let i = 1; i <= lines; i++) {
+                lineNumbersText += i + '\n';
+            }
+            
+            lineNumbers.textContent = lineNumbersText;
+        }
+
+        function findFoldableLines(lines) {
+            const foldableLines = new Set();
+            let bracketStack = [];
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                
+                // Check for opening brackets that can be folded
+                if (line.includes('{') || line.includes('[')) {
+                    const openBrackets = (line.match(/[{\[]/g) || []).length;
+                    const closeBrackets = (line.match(/[}\]]/g) || []).length;
+                    
+                    if (openBrackets > closeBrackets) {
+                        foldableLines.add(i);
+                        bracketStack.push({ line: i, type: line.includes('{') ? 'object' : 'array' });
+                    }
+                }
+            }
+            
+            return foldableLines;
+        }
+
+        function toggleFold(type, lineIndex) {
+            const editor = document.getElementById(type + 'Editor');
+            const lines = editor.value.split('\n');
+            
+            if (collapsedSections[type].has(lineIndex)) {
+                // Expand
+                collapsedSections[type].delete(lineIndex);
+                expandLines(type, lineIndex, lines);
+            } else {
+                // Collapse
+                collapsedSections[type].add(lineIndex);
+                collapseLines(type, lineIndex, lines);
+            }
+            
+            updateLineNumbers(type);
+        }
+
+        function collapseLines(type, startLine, lines) {
+            const editor = document.getElementById(type + 'Editor');
+            const foldEndLine = findMatchingBracket(lines, startLine);
+            
+            if (foldEndLine > startLine) {
+                // Replace the content between brackets with a collapsed indicator
+                const beforeFold = lines.slice(0, startLine + 1);
+                const afterFold = lines.slice(foldEndLine);
+                
+                // Modify the start line to show it's collapsed
+                const startLineContent = lines[startLine];
+                const collapsedIndicator = startLineContent.replace(/([{\[])\s*$/, '$1...}');
+                beforeFold[startLine] = collapsedIndicator;
+                
+                const newContent = beforeFold.concat(afterFold).join('\n');
+                editor.value = newContent;
+            }
+        }
+
+        function expandLines(type, startLine, originalLines) {
+            // This is more complex - we need to restore the original content
+            // For now, let's trigger a re-beautify to restore full content
+            if (type === 'output') {
+                const inputEditor = document.getElementById('inputEditor');
+                if (inputEditor.value.trim()) {
+                    beautifyJSON();
+                }
+            }
+        }
+
+        function findMatchingBracket(lines, startLine) {
+            let bracketCount = 0;
+            let startBracket = '';
+            let endBracket = '';
+            
+            // Determine if we're looking for { } or [ ]
+            const startLineContent = lines[startLine];
+            if (startLineContent.includes('{')) {
+                startBracket = '{';
+                endBracket = '}';
+            } else if (startLineContent.includes('[')) {
+                startBracket = '[';
+                endBracket = ']';
+            } else {
+                return startLine;
+            }
+            
+            // Count brackets to find the matching closing bracket
+            for (let i = startLine; i < lines.length; i++) {
+                const line = lines[i];
+                
+                for (let char of line) {
+                    if (char === startBracket) {
+                        bracketCount++;
+                    } else if (char === endBracket) {
+                        bracketCount--;
+                        if (bracketCount === 0) {
+                            return i;
+                        }
+                    }
+                }
+            }
+            
+            return lines.length - 1;
+        }
+
+        function syncScroll(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            lineNumbers.scrollTop = editor.scrollTop;
+        }
+
+        function showError(message) {
+            const outputEditor = document.getElementById('outputEditor');
+            const successPanel = document.getElementById('successPanel');
+            
+            // Show error in output panel
+            const cleanMessage = message.replace(/<br>/g, '\n').replace(/<\/?[^>]+(>|$)/g, "");
+            setEditorContent('output', cleanMessage);
+            updateLineNumbers('output');
+            
+            // Hide success panel if showing
+            successPanel.classList.remove('show');
+        }
+
+        function showSuccess(message) {
+            const successPanel = document.getElementById('successPanel');
+            
+            successPanel.innerHTML = message;
+            successPanel.classList.add('show');
+            
+            setTimeout(() => {
+                successPanel.classList.remove('show');
+            }, 3000);
+        }
+
+        function getTabSize() {
+            return parseInt(document.getElementById('tabSize2').value);
+        }
+
+        function updateTabSize2() {
+            // Update indentation guides based on new tab size
+            updateIndentationGuides();
+            
+            // If there's already formatted JSON, reformat it with new tab size
+            const inputText = getEditorText('input');
+            const outputText = getEditorText('output');
+            
+            if (inputText.trim() && outputText.trim()) {
+                beautifyJSON();
+            }
+        }
+
+        function updateIndentationGuides() {
+            // For now, let's remove the visual guides entirely
+            // We can add a more sophisticated solution later if needed
+        }
+
+
+
+        function validateJSON() {
+            const jsonText = getEditorText('input').trim();
+            
+            if (!jsonText) {
+                showError('Please enter some JSON to validate.');
+                return;
+            }
+
+            try {
+                JSON.parse(jsonText);
+                showSuccess('✅ Valid JSON! No syntax errors found.');
+            } catch (error) {
+                const errorMessage = error.message;
+                const match = errorMessage.match(/position (\d+)/);
+                
+                if (match) {
+                    const position = parseInt(match[1]);
+                    const lines = jsonText.substring(0, position).split('\n');
+                    const lineNumber = lines.length;
+                    const columnNumber = lines[lines.length - 1].length + 1;
+                    
+                    showError(`❌ JSON SYNTAX ERROR
+
+LINE: ${lineNumber}, COLUMN: ${columnNumber}
+
+ERROR: ${errorMessage}
+
+HELP: Check the syntax around line ${lineNumber}
+
+The error occurred at position ${position} in your JSON input.
+Please fix the syntax error and try again.`);
+                } else {
+                    showError(`❌ JSON SYNTAX ERROR
+
+ERROR: ${errorMessage}
+
+Please check your JSON syntax and try again.`);
+                }
+            }
+        }
+
+        function beautifyJSON() {
+            const jsonText = getEditorText('input').trim();
+            
+            if (!jsonText) {
+                showError('❌ NO INPUT PROVIDED\n\nPlease enter some JSON to beautify.');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(jsonText);
+                const beautified = JSON.stringify(parsed, null, getTabSize());
+                const highlighted = highlightJSON(beautified);
+                setEditorContent('output', highlighted, true);
+                saveToLocalStorage(); // Save after successful operation
+                showSuccess('✅ JSON successfully beautified!');
+            } catch (error) {
+                console.log('Beautify error caught:', error); // Debug log
+                const errorMessage = error.message;
+                const match = errorMessage.match(/position (\d+)/);
+                
+                if (match) {
+                    const position = parseInt(match[1]);
+                    const lines = jsonText.substring(0, position).split('\n');
+                    const lineNumber = lines.length;
+                    const columnNumber = lines[lines.length - 1].length + 1;
+                    
+                    showError(`❌ CANNOT BEAUTIFY INVALID JSON
+
+LINE: ${lineNumber}, COLUMN: ${columnNumber}
+
+ERROR: ${errorMessage}
+
+HELP: Fix the syntax error first
+
+The error occurred at position ${position} in your JSON input.
+Please correct the JSON syntax before beautifying.`);
+                } else {
+                    showError(`❌ CANNOT BEAUTIFY INVALID JSON
+
+ERROR: ${errorMessage}
+
+Please fix the JSON syntax errors before beautifying.`);
+                }
+            }
+        }
+
+        function minifyJSON() {
+            const jsonText = getEditorText('input').trim();
+            
+            if (!jsonText) {
+                showError('❌ NO INPUT PROVIDED\n\nPlease enter some JSON to minify.');
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(jsonText);
+                const minified = JSON.stringify(parsed);
+                const highlighted = highlightJSON(minified);
+                setEditorContent('output', highlighted, true);
+                saveToLocalStorage(); // Save after successful operation
+                showSuccess('✅ JSON successfully minified!');
+            } catch (error) {
+                console.log('Minify error caught:', error); // Debug log
+                const errorMessage = error.message;
+                const match = errorMessage.match(/position (\d+)/);
+                
+                if (match) {
+                    const position = parseInt(match[1]);
+                    const lines = jsonText.substring(0, position).split('\n');
+                    const lineNumber = lines.length;
+                    const columnNumber = lines[lines.length - 1].length + 1;
+                    
+                    showError(`❌ CANNOT MINIFY INVALID JSON
+
+LINE: ${lineNumber}, COLUMN: ${columnNumber}
+
+ERROR: ${errorMessage}
+
+HELP: Fix the syntax error first
+
+The error occurred at position ${position} in your JSON input.
+Please correct the JSON syntax before minifying.`);
+                } else {
+                    showError(`❌ CANNOT MINIFY INVALID JSON
+
+ERROR: ${errorMessage}
+
+Please fix the JSON syntax errors before minifying.`);
+                }
+            }
+        }
+
+        function clearAll() {
+            setEditorContent('input', '');
+            setEditorContent('output', '');
+            updateLineNumbers('input');
+            updateLineNumbers('output');
+            
+            const successPanel = document.getElementById('successPanel');
+            successPanel.classList.remove('show');
+            
+            // Clear saved data as well
+            clearSavedData();
+            
+            showSuccess('✅ All content cleared!');
+        }
+
+        // Load saved data or sample JSON for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load auto-save preference first
+            loadAutoSavePreference();
+            
+            // Initialize indentation guides
+            updateIndentationGuides();
+            
+            // Try to load saved data first
+            const dataLoaded = loadFromLocalStorage();
+            
+            // If no saved data, load sample JSON
+            if (!dataLoaded) {
+                const sampleJSON = `{
+  "name": "JSON Formatter",
+  "version": "1.0.0",
+  "features": [
+    "Validate JSON",
+    "Beautify JSON",
+    "Minify JSON",
+    "Line Numbers",
+    "Error Reporting"
+  ],
+  "settings": {
+    "tabSize": 2,
+    "showLineNumbers": true
+  }
+}`;
+                
+                setEditorContent('input', sampleJSON);
+                updateLineNumbers('input');
+            }
+        });
+
+        function copyOutput() {
+            const outputText = getEditorText('output');
+            const copyButton = document.querySelector('.copy-icon');
+            
+            if (!outputText.trim()) {
+                showSuccess('❌ No content to copy!');
+                return;
+            }
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(outputText).then(function() {
+                // Show success feedback
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '✅ Copied!';
+                copyButton.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    copyButton.innerHTML = originalText;
+                    copyButton.classList.remove('copy-success');
+                }, 2000);
+                
+                showSuccess('✅ Output JSON copied to clipboard!');
+            }).catch(function(err) {
+                // Fallback for older browsers
+                const outputEditor = document.getElementById('outputEditor');
+                const range = document.createRange();
+                range.selectNodeContents(outputEditor);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand('copy');
+                selection.removeAllRanges();
+                
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '✅ Copied!';
+                copyButton.classList.add('copy-success');
+                
+                setTimeout(() => {
+                    copyButton.innerHTML = originalText;
+                    copyButton.classList.remove('copy-success');
+                }, 2000);
+                
+                showSuccess('✅ Output JSON copied to clipboard!');
+            });
+        }
+
+        // Handle Tab key for contenteditable divs
+        function handleTabKey(e, editor) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                
+                const tabSize = getTabSize();
+                
+                if (e.shiftKey) {
+                    // Shift+Tab: Un-indent (dedent)
+                    unindentAtCursor(editor, tabSize);
+                } else {
+                    // Tab: Indent
+                    const tabString = ' '.repeat(tabSize);
+                    document.execCommand('insertText', false, tabString);
+                }
+                
+                // Trigger auto-save
+                clearTimeout(window.saveTimeout);
+                window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+            }
+        }
+
+        // Un-indent at cursor position
+        function unindentAtCursor(editor, tabSize) {
+            const selection = window.getSelection();
+            if (!selection.rangeCount) return;
+            
+            const range = selection.getRangeAt(0);
+            const textNode = range.startContainer;
+            
+            // If not in a text node, find the nearest text node
+            let currentNode = textNode;
+            if (currentNode.nodeType !== Node.TEXT_NODE) {
+                const walker = document.createTreeWalker(
+                    editor,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+                walker.currentNode = currentNode;
+                currentNode = walker.nextNode() || walker.previousNode();
+                if (!currentNode) return;
+            }
+            
+            const text = currentNode.textContent || '';
+            const offset = range.startOffset;
+            
+            // Find the start of current line
+            const beforeCursor = text.substring(0, offset);
+            const lineStart = beforeCursor.lastIndexOf('\n') + 1;
+            const currentLine = text.substring(lineStart, offset);
+            
+            // Check if there are spaces at the beginning of current line to remove
+            const spacesToRemove = Math.min(tabSize, currentLine.match(/^ */)[0].length);
+            
+            if (spacesToRemove > 0) {
+                // Create new range to select the spaces to remove
+                const newRange = document.createRange();
+                newRange.setStart(currentNode, lineStart);
+                newRange.setEnd(currentNode, lineStart + spacesToRemove);
+                
+                // Select and delete the spaces
+                selection.removeAllRanges();
+                selection.addRange(newRange);
+                document.execCommand('delete');
+                
+                // Restore cursor position
+                const finalRange = document.createRange();
+                finalRange.setStart(currentNode, Math.max(0, offset - spacesToRemove));
+                finalRange.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(finalRange);
+            }
+        }
+
+        // Handle Enter key for contenteditable divs
+        function handleEnterKey(e, editor) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                
+                // Get current line indentation
+                const selection = window.getSelection();
+                const range = selection.getRangeAt(0);
+                const textNode = range.startContainer;
+                const offset = range.startOffset;
+                
+                // Find current line text
+                const text = textNode.textContent || '';
+                const beforeCursor = text.substring(0, offset);
+                const currentLineStart = beforeCursor.lastIndexOf('\n') + 1;
+                const currentLine = text.substring(currentLineStart, offset);
+                
+                // Extract indentation
+                const indentMatch = currentLine.match(/^(\s*)/);
+                const currentIndent = indentMatch ? indentMatch[1] : '';
+                
+                // Check for extra indentation
+                const trimmedLine = currentLine.trim();
+                let extraIndent = '';
+                if (trimmedLine.endsWith('{') || trimmedLine.endsWith('[') || trimmedLine.endsWith(':')) {
+                    const tabSize = getTabSize();
+                    extraIndent = ' '.repeat(tabSize);
+                }
+                
+                // Insert newline with indentation
+                const newlineWithIndent = '\n' + currentIndent + extraIndent;
+                document.execCommand('insertText', false, newlineWithIndent);
+                
+                // Trigger auto-save
+                clearTimeout(window.saveTimeout);
+                window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+            }
+        }
+
+        // Add event listeners for contenteditable divs
+        document.getElementById('inputEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+
+        document.getElementById('outputEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+
+        // Save when tab size changes
+        document.getElementById('tabSize2').addEventListener('change', function() {
+            saveToLocalStorage();
+        });
+    </script>
+</body>
+</html>
