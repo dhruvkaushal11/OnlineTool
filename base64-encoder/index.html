@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder & Decoder - Free Online Tool</title>
+    <meta name="description" content="Free online Base64 encoder and decoder supporting UTF-8, ASCII, and more. Encode or decode text and files with popular Base64 variants.">
+    <meta name="keywords" content="base64, encode, decode, online, utf-8, ascii, base64url, text, file, utility">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Base64 Tool">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://proximity-tools.com/base64-encoder.html">
+    <meta property="og:title" content="Base64 Encoder & Decoder - Free Online Tool">
+    <meta property="og:description" content="Encode or decode Base64 with UTF-8, ASCII, and more. Fast, secure, and privacy-focused.">
+    <meta property="og:image" content="https://proximity-tools.com/base64-encoder-preview.png">
+    <meta property="og:site_name" content="Base64 Tool">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://proximity-tools.com/base64-encoder.html">
+    <meta property="twitter:title" content="Base64 Encoder & Decoder - Free Online Tool">
+    <meta property="twitter:description" content="Encode or decode Base64 with UTF-8, ASCII, and more. Fast, secure, and privacy-focused.">
+    <meta property="twitter:image" content="https://proximity-tools.com/base64-encoder-preview.png">
+    <link rel="canonical" href="https://proximity-tools.com/base64-encoder.html">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <style>
+        /* Professional Utility Theme (see cursor-rules-utility-theme.md) */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --header-gradient: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 100%);
+            --white: #ffffff;
+            --light-bg: #f8fafc;
+            --btn-primary: #10b981;
+            --btn-primary-hover: #059669;
+            --btn-secondary: #6366f1;
+            --btn-secondary-hover: #4f46e5;
+            --btn-warning: #f59e0b;
+            --btn-warning-hover: #d97706;
+            --btn-info: #0ea5e9;
+            --btn-info-hover: #0284c7;
+            --text-primary: #374151;
+            --text-secondary: #6b7280;
+            --text-heading: #1f2937;
+            --text-muted: #9ca3af;
+            --panel-header: #374151;
+            --panel-bg: #ffffff;
+            --line-numbers: #f3f4f6;
+            --border-color: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: var(--header-gradient);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary {
+            background: var(--btn-primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--btn-primary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: var(--btn-secondary);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: var(--btn-secondary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-warning {
+            background: var(--btn-warning);
+            color: white;
+        }
+        .btn-warning:hover {
+            background: var(--btn-warning-hover);
+            transform: translateY(-2px);
+        }
+        .btn-info {
+            background: var(--btn-info);
+            color: white;
+        }
+        .btn-info:hover {
+            background: var(--btn-info-hover);
+            transform: translateY(-2px);
+        }
+        .main-content {
+            display: flex;
+            height: 70vh;
+            min-height: 500px;
+            gap: 15px;
+        }
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: 0;
+        }
+        .panel-header {
+            background: var(--panel-header);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .editor-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            min-height: 0;
+        }
+        .line-numbers {
+            background: var(--line-numbers);
+            color: var(--text-secondary);
+            padding: 15px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: right;
+            border-right: 1px solid var(--border-color);
+            min-width: 50px;
+            user-select: none;
+            white-space: pre;
+            overflow-y: hidden;
+            max-height: 100%;
+        }
+        .editor {
+            flex: 1;
+            border: none;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+            background: white;
+            color: var(--text-primary);
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 100%;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        .editor[contenteditable="true"] {
+            min-height: 100%;
+        }
+        .editor:focus {
+            outline: 2px solid #06b6d4;
+            outline-offset: -2px;
+        }
+        .editor:empty::before {
+            content: attr(data-placeholder);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        .vertical-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            padding: 24px 18px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            min-width: 260px;
+            max-width: 260px;
+            border: 1px solid var(--border-color);
+        }
+        .vertical-controls .btn {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 15px;
+            white-space: nowrap;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .control-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        .control-option label {
+            cursor: pointer;
+            user-select: none;
+            min-width: 110px;
+        }
+        #encodingSelect, #variantSelect {
+            width: 100%;
+            padding: 6px 8px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+        }
+        #fileInput {
+            width: 100%;
+            font-size: 14px;
+            margin-top: 2px;
+            margin-bottom: 0;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            padding: 6px 8px;
+        }
+        .success-panel {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            padding: 15px;
+            margin: 20px 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: none;
+        }
+        .success-panel.show {
+            display: block;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            background: var(--light-bg);
+        }
+        .last-saved {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                height: 80vh;
+                min-height: 600px;
+                gap: 10px;
+            }
+            .panel {
+                min-height: 200px;
+                flex: 1;
+            }
+            .vertical-controls {
+                flex-direction: column;
+                min-width: 100%;
+                max-width: 100%;
+                padding: 18px 8px;
+                gap: 0;
+                flex-wrap: nowrap;
+                align-items: stretch;
+            }
+            .vertical-controls .btn {
+                width: 100%;
+                flex: 1;
+                min-width: 120px;
+                padding: 12px 16px;
+                margin-bottom: 14px;
+            }
+            .control-option {
+                width: 100%;
+                justify-content: flex-start;
+                margin-bottom: 12px;
+            }
+        }
+        .copy-icon {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .copy-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        .copy-icon:active {
+            transform: scale(0.95);
+        }
+        .copy-success {
+            color: #10b981;
+            font-size: 12px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Free Online Base64 Encoder & Decoder</h1>
+            <p>Encode or decode Base64 with support for UTF-8, ASCII, and popular variants. Fast, secure, and privacy-focused.</p>
+        </header>
+        <div class="success-panel" id="successPanel"></div>
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Decoded Text</span>
+                    <button class="copy-icon" onclick="copyText('input')" title="Copy to Clipboard">📋 Copy</button>
+                    <div class="auto-save-toggle">
+                        <span class="auto-save-status" id="autoSaveStatus">Auto-save: ON</span>
+                        <div class="toggle-switch active" id="autoSaveToggle" onclick="toggleAutoSave()" title="Toggle auto-save">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="inputLineNumbers">1</div>
+                    <div class="editor" id="inputEditor" contenteditable="true" spellcheck="false" data-placeholder="Paste or type your text here..." oninput="handleEditorInput('input')" onscroll="syncScroll('input')"></div>
+                </div>
+            </div>
+            <div class="vertical-controls">
+                <button class="btn btn-warning" onclick="clearAll()">Clear All</button>
+                <div class="control-option">
+                    <label for="encodingSelect">Encoding:</label>
+                    <select id="encodingSelect">
+                        <option value="auto">Auto-detect</option>
+                        <option value="utf-8">UTF-8</option>
+                        <option value="ascii">ASCII</option>
+                        <option value="iso-8859-1">ISO-8859-1 (Latin-1)</option>
+                        <option value="iso-8859-2">ISO-8859-2</option>
+                        <option value="iso-8859-6">ISO-8859-6</option>
+                        <option value="iso-8859-15">ISO-8859-15</option>
+                        <option value="windows-1252">Windows-1252</option>
+                        <option value="windows-1251">Windows-1251</option>
+                        <option value="windows-1254">Windows-1254</option>
+                        <option value="utf-16">UTF-16</option>
+                        <option value="utf-16le">UTF-16 LE</option>
+                        <option value="utf-16be">UTF-16 BE</option>
+                        <option value="utf-32">UTF-32</option>
+                        <option value="utf-32le">UTF-32 LE</option>
+                        <option value="utf-32be">UTF-32 BE</option>
+                        <option value="koi8-r">KOI8-R</option>
+                        <option value="koi8-u">KOI8-U</option>
+                        <option value="jis">JIS</option>
+                        <option value="euc-jp">EUC-JP</option>
+                        <option value="euc-kr">EUC-KR</option>
+                        <option value="euc-cn">EUC-CN</option>
+                        <option value="gb18030">GB18030</option>
+                        <option value="big5">BIG-5</option>
+                        <option value="cp850">CP850</option>
+                        <option value="cp866">CP866</option>
+                        <option value="cp932">CP932</option>
+                        <option value="cp936">CP936</option>
+                        <option value="cp950">CP950</option>
+                    </select>
+                </div>
+                <div class="control-option">
+                    <input type="checkbox" id="decodeLines" />
+                    <label for="decodeLines">Decode each line separately</label>
+                </div>
+                <div class="control-option">
+                    <label for="fileInput">File:</label>
+                    <input type="file" id="fileInput" />
+                </div>
+                <div class="control-option">
+                    <label for="variantSelect">Base64 Variant:</label>
+                    <select id="variantSelect">
+                        <option value="standard">Standard</option>
+                        <option value="url">Base64URL</option>
+                        <option value="mime">MIME (with line breaks)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Encoded (Base64)</span>
+                    <button class="copy-icon" onclick="copyText('output')" title="Copy to Clipboard">📋 Copy</button>
+                </div>
+                <div class="editor-container">
+                    <div class="line-numbers" id="outputLineNumbers">1</div>
+                    <div class="editor" id="outputEditor" contenteditable="true" spellcheck="false" data-placeholder="Result will appear here..." oninput="handleEditorInput('output')" onscroll="syncScroll('output')"></div>
+                </div>
+            </div>
+        </div>
+        <section class="features-section" style="background: var(--light-bg); padding: 60px 30px; border-top: 1px solid var(--border-color);">
+            <div class="features-content" style="max-width: 1200px; margin: 0 auto;">
+                <h2 style="color: var(--text-heading); font-size: 2rem; margin-bottom: 2rem; text-align: center; font-weight: 600;">Why Use Our Base64 Encoder & Decoder?</h2>
+                <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                    <div class="feature-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <h3>🔒 Privacy First</h3>
+                        <p>All encoding and decoding is done locally in your browser. Your data never leaves your device.</p>
+                    </div>
+                    <div class="feature-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <h3>⚡ Fast & Versatile</h3>
+                        <p>Supports UTF-8, ASCII, UTF-16, Latin-1, and popular Base64 variants (Standard, URL, MIME).</p>
+                    </div>
+                    <div class="feature-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <h3>🔄 Bi-directional</h3>
+                        <p>Encode or decode text instantly. Switch between modes with a single click.</p>
+                    </div>
+                    <div class="feature-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <h3>📋 Easy Copy</h3>
+                        <p>Copy output to clipboard with one click. Perfect for developers, sysadmins, and writers.</p>
+                    </div>
+                    <div class="feature-item" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <h3>💾 Auto-Save</h3>
+                        <p>Optional auto-save to local storage. Never lose your work, or disable for privacy.</p>
+                    </div>
+                </div>
+                <h2 style="color: var(--text-heading); font-size: 2rem; margin-bottom: 2rem; text-align: center; font-weight: 600;">How to Use</h2>
+                <div class="instructions" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 30px;">
+                    <ol style="padding-left: 20px;">
+                        <li>Paste or type your text in the input panel.</li>
+                        <li>Select the desired encoding and Base64 variant.</li>
+                        <li>Click "Encode" or "Decode" as needed.</li>
+                        <li>Copy the result or clear all fields.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p>&copy; 2024 Base64 Tool - Free Online Encoder & Decoder</p>
+            <p>Best Base64 utility for developers and writers | Fast, secure, and easy to use</p>
+            <div class="last-saved" id="lastSaved"></div>
+        </footer>
+    </div>
+    <script>
+        // --- Utility Functions ---
+        function getEditorText(type) {
+            const editor = document.getElementById(type + 'Editor');
+            return editor.textContent || editor.innerText || '';
+        }
+        function setEditorContent(type, content) {
+            const editor = document.getElementById(type + 'Editor');
+            editor.textContent = content;
+            updateLineNumbers(type);
+        }
+        function handleEditorInput(type) {
+            updateLineNumbers(type);
+            clearTimeout(window.saveTimeout);
+            window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+        }
+        function updateLineNumbers(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            const text = getEditorText(type);
+            const lines = text.split('\n').length;
+            let lineNumbersText = '';
+            for (let i = 1; i <= lines; i++) {
+                lineNumbersText += i + '\n';
+            }
+            lineNumbers.textContent = lineNumbersText;
+        }
+        function syncScroll(type) {
+            const editor = document.getElementById(type + 'Editor');
+            const lineNumbers = document.getElementById(type + 'LineNumbers');
+            lineNumbers.scrollTop = editor.scrollTop;
+        }
+        function showSuccess(message) {
+            const successPanel = document.getElementById('successPanel');
+            successPanel.innerHTML = message;
+            successPanel.classList.add('show');
+            setTimeout(() => {
+                successPanel.classList.remove('show');
+            }, 3000);
+        }
+        // --- Base64 Encode/Decode Functions ---
+        function encodeBase64() {
+            const input = getEditorText('input');
+            const encoding = document.getElementById('encodingSelect').value;
+            const variant = document.getElementById('variantSelect').value;
+            try {
+                let bytes = stringToBytes(input, encoding);
+                let b64 = base64Encode(bytes);
+                if (variant === 'url') {
+                    b64 = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                } else if (variant === 'mime') {
+                    b64 = b64.replace(/(.{76})/g, '$1\r\n');
+                }
+                setEditorContent('output', b64);
+                showSuccess('✅ Encoded to Base64!');
+                saveToLocalStorage();
+            } catch (e) {
+                setEditorContent('output', '');
+                showSuccess('❌ Encoding failed: ' + e.message);
+            }
+        }
+        function decodeBase64() {
+            const input = getEditorText('input');
+            const encoding = document.getElementById('encodingSelect').value;
+            const variant = document.getElementById('variantSelect').value;
+            const decodeLines = document.getElementById('decodeLines').checked;
+            let result = '';
+            try {
+                if (decodeLines) {
+                    result = input.split('\n').map(line => {
+                        if (!line.trim()) return '';
+                        return decodeBase64Line(line, encoding, variant);
+                    }).join('\n');
+                } else {
+                    result = decodeBase64Line(input, encoding, variant);
+                }
+                setEditorContent('output', result);
+                showSuccess('✅ Decoded from Base64!');
+                saveToLocalStorage();
+            } catch (e) {
+                setEditorContent('output', '');
+                showSuccess('❌ Decoding failed: ' + e.message);
+            }
+        }
+        function decodeBase64Line(line, encoding, variant) {
+            let b64 = line.replace(/\s+/g, '');
+            if (variant === 'url') {
+                b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+                while (b64.length % 4) b64 += '=';
+            }
+            const bytes = base64Decode(b64);
+            return bytesToString(bytes, encoding);
+        }
+        // --- Encoding/Decoding Helpers ---
+        function stringToBytes(str, encoding) {
+            if (encoding === 'utf-8') {
+                return new TextEncoder().encode(str);
+            } else if (encoding === 'ascii') {
+                return Uint8Array.from(str.split('').map(c => c.charCodeAt(0) & 0x7F));
+            } else if (encoding === 'latin1') {
+                return Uint8Array.from(str.split('').map(c => c.charCodeAt(0) & 0xFF));
+            } else if (encoding === 'utf-16le') {
+                const buf = new ArrayBuffer(str.length * 2);
+                const view = new Uint16Array(buf);
+                for (let i = 0; i < str.length; i++) view[i] = str.charCodeAt(i);
+                return new Uint8Array(buf);
+            } else {
+                throw new Error('Unsupported encoding');
+            }
+        }
+        function bytesToString(bytes, encoding) {
+            if (encoding === 'utf-8') {
+                return new TextDecoder('utf-8').decode(bytes);
+            } else if (encoding === 'ascii') {
+                return String.fromCharCode(...bytes.map(b => b & 0x7F));
+            } else if (encoding === 'latin1') {
+                return String.fromCharCode(...bytes.map(b => b & 0xFF));
+            } else if (encoding === 'utf-16le') {
+                const view = new Uint16Array(bytes.buffer, bytes.byteOffset, bytes.length / 2);
+                return String.fromCharCode(...view);
+            } else {
+                throw new Error('Unsupported encoding');
+            }
+        }
+        function base64Encode(bytes) {
+            let binary = '';
+            for (let i = 0; i < bytes.length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return btoa(binary);
+        }
+        function base64Decode(b64) {
+            let binary = atob(b64);
+            let bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+            return bytes;
+        }
+        // --- Copy, Auto-save, and Misc ---
+        function copyText(side) {
+            const text = getEditorText(side);
+            const copyButton = side === 'input'
+                ? document.querySelector('.panel-header .copy-icon[onclick*="input"]')
+                : document.querySelector('.panel-header .copy-icon[onclick*="output"]');
+            if (!text.trim()) {
+                showSuccess('❌ No content to copy!');
+                return;
+            }
+            navigator.clipboard.writeText(text).then(function() {
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '✅ Copied!';
+                copyButton.classList.add('copy-success');
+                setTimeout(() => {
+                    copyButton.innerHTML = '📋 Copy';
+                    copyButton.classList.remove('copy-success');
+                }, 2000);
+                showSuccess(`✅ ${side === 'input' ? 'Decoded' : 'Encoded'} text copied to clipboard!`);
+            }).catch(function() {
+                showSuccess('✅ Output copied (fallback)!');
+            });
+        }
+        function clearAll() {
+            setEditorContent('input', '');
+            setEditorContent('output', '');
+            updateLineNumbers('input');
+            updateLineNumbers('output');
+            clearSavedData();
+            showSuccess('✅ All content cleared!');
+        }
+        // --- Auto-save ---
+        let autoSaveEnabled = true;
+        function saveToLocalStorage() {
+            if (!autoSaveEnabled) return;
+            const inputValue = getEditorText('input');
+            const outputValue = getEditorText('output');
+            const encoding = document.getElementById('encodingSelect').value;
+            const variant = document.getElementById('variantSelect').value;
+            const timestamp = new Date().toLocaleString();
+            const saveData = {
+                input: inputValue,
+                output: outputValue,
+                encoding: encoding,
+                variant: variant,
+                timestamp: timestamp
+            };
+            localStorage.setItem('base64Data', JSON.stringify(saveData));
+            updateLastSavedDisplay(timestamp);
+        }
+        function loadFromLocalStorage() {
+            if (!autoSaveEnabled) return false;
+            try {
+                const savedData = localStorage.getItem('base64Data');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    if (data.input) setEditorContent('input', data.input);
+                    if (data.output) setEditorContent('output', data.output);
+                    if (data.encoding) document.getElementById('encodingSelect').value = data.encoding;
+                    if (data.variant) document.getElementById('variantSelect').value = data.variant;
+                    if (data.timestamp) updateLastSavedDisplay(data.timestamp);
+                    return true;
+                }
+            } catch (error) {
+                console.log('Error loading saved data:', error);
+            }
+            return false;
+        }
+        function updateLastSavedDisplay(timestamp) {
+            const lastSavedDiv = document.getElementById('lastSaved');
+            if (timestamp) {
+                lastSavedDiv.textContent = `Last saved: ${timestamp}`;
+            }
+        }
+        function clearSavedData() {
+            localStorage.removeItem('base64Data');
+            document.getElementById('lastSaved').textContent = '';
+        }
+        function toggleAutoSave() {
+            autoSaveEnabled = !autoSaveEnabled;
+            const toggle = document.getElementById('autoSaveToggle');
+            const status = document.getElementById('autoSaveStatus');
+            const lastSaved = document.getElementById('lastSaved');
+            if (autoSaveEnabled) {
+                toggle.classList.add('active');
+                status.textContent = 'Auto-save: ON';
+                saveToLocalStorage();
+            } else {
+                toggle.classList.remove('active');
+                status.textContent = 'Auto-save: OFF';
+                clearSavedData();
+                lastSaved.textContent = 'Auto-save disabled - data not saved';
+            }
+            localStorage.setItem('base64AutoSaveEnabled', autoSaveEnabled.toString());
+        }
+        function loadAutoSavePreference() {
+            try {
+                const savedPreference = localStorage.getItem('base64AutoSaveEnabled');
+                if (savedPreference !== null) {
+                    autoSaveEnabled = savedPreference === 'true';
+                    const toggle = document.getElementById('autoSaveToggle');
+                    const status = document.getElementById('autoSaveStatus');
+                    if (autoSaveEnabled) {
+                        toggle.classList.add('active');
+                        status.textContent = 'Auto-save: ON';
+                    } else {
+                        toggle.classList.remove('active');
+                        status.textContent = 'Auto-save: OFF';
+                        document.getElementById('lastSaved').textContent = 'Auto-save disabled - data not saved';
+                    }
+                }
+            } catch (error) {
+                console.log('Error loading auto-save preference:', error);
+            }
+        }
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAutoSavePreference();
+            const dataLoaded = loadFromLocalStorage();
+            if (!dataLoaded) {
+                setEditorContent('input', 'Base64 is awesome!');
+                setEditorContent('output', '');
+            }
+            
+            // Simple, working real-time sync
+            const leftEditor = document.getElementById('inputEditor');
+            const rightEditor = document.getElementById('outputEditor');
+            let isUpdating = false;
+            
+            // Left editor changes -> encode to right
+            leftEditor.addEventListener('input', function() {
+                if (isUpdating) return;
+                isUpdating = true;
+                
+                try {
+                    const text = leftEditor.textContent || '';
+                    if (!text) {
+                        rightEditor.textContent = '';
+                    } else {
+                        const encoding = document.getElementById('encodingSelect').value;
+                        const variant = document.getElementById('variantSelect').value;
+                        
+                        let bytes = stringToBytes(text, encoding === 'auto' ? 'utf-8' : encoding);
+                        let b64 = base64Encode(bytes);
+                        
+                        if (variant === 'url') {
+                            b64 = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                        } else if (variant === 'mime') {
+                            b64 = b64.replace(/(.{76})/g, '$1\r\n');
+                        }
+                        
+                        rightEditor.textContent = b64;
+                    }
+                    updateLineNumbers('output');
+                } catch (e) {
+                    rightEditor.textContent = 'Error: ' + e.message;
+                    updateLineNumbers('output');
+                }
+                
+                setTimeout(() => { isUpdating = false; }, 10);
+            });
+            
+            // Right editor changes -> decode to left
+            rightEditor.addEventListener('input', function() {
+                if (isUpdating) return;
+                isUpdating = true;
+                
+                try {
+                    const text = rightEditor.textContent || '';
+                    if (!text) {
+                        leftEditor.textContent = '';
+                    } else {
+                        const encoding = document.getElementById('encodingSelect').value;
+                        const variant = document.getElementById('variantSelect').value;
+                        
+                        let b64 = text.replace(/\s+/g, '');
+                        if (variant === 'url') {
+                            b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+                            while (b64.length % 4) b64 += '=';
+                        }
+                        
+                        const bytes = base64Decode(b64);
+                        const decoded = bytesToString(bytes, encoding === 'auto' ? 'utf-8' : encoding);
+                        leftEditor.textContent = decoded;
+                    }
+                    updateLineNumbers('input');
+                } catch (e) {
+                    leftEditor.textContent = 'Error: ' + e.message;
+                    updateLineNumbers('input');
+                }
+                
+                setTimeout(() => { isUpdating = false; }, 10);
+            });
+
+            // Add listeners for encoding and variant changes
+            const encodingSelect = document.getElementById('encodingSelect');
+            const variantSelect = document.getElementById('variantSelect');
+
+            function handleSettingsChange() {
+                if (isUpdating) return;
+                
+                const leftText = leftEditor.textContent || '';
+                const rightText = rightEditor.textContent || '';
+                
+                // If left panel has content, re-encode it
+                if (leftText.trim()) {
+                    isUpdating = true;
+                    try {
+                        const encoding = encodingSelect.value;
+                        const variant = variantSelect.value;
+                        
+                        let bytes = stringToBytes(leftText, encoding === 'auto' ? 'utf-8' : encoding);
+                        let b64 = base64Encode(bytes);
+                        
+                        if (variant === 'url') {
+                            b64 = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+                        } else if (variant === 'mime') {
+                            b64 = b64.replace(/(.{76})/g, '$1\r\n');
+                        }
+                        
+                        rightEditor.textContent = b64;
+                        updateLineNumbers('output');
+                    } catch (e) {
+                        rightEditor.textContent = 'Error: ' + e.message;
+                        updateLineNumbers('output');
+                    }
+                    setTimeout(() => { isUpdating = false; }, 10);
+                }
+                // If right panel has content but left is empty, re-decode it
+                else if (rightText.trim()) {
+                    isUpdating = true;
+                    try {
+                        const encoding = encodingSelect.value;
+                        const variant = variantSelect.value;
+                        
+                        let b64 = rightText.replace(/\s+/g, '');
+                        if (variant === 'url') {
+                            b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
+                            while (b64.length % 4) b64 += '=';
+                        }
+                        
+                        const bytes = base64Decode(b64);
+                        const decoded = bytesToString(bytes, encoding === 'auto' ? 'utf-8' : encoding);
+                        leftEditor.textContent = decoded;
+                        updateLineNumbers('input');
+                    } catch (e) {
+                        leftEditor.textContent = 'Error: ' + e.message;
+                        updateLineNumbers('input');
+                    }
+                    setTimeout(() => { isUpdating = false; }, 10);
+                }
+            }
+
+            encodingSelect.addEventListener('change', handleSettingsChange);
+            variantSelect.addEventListener('change', handleSettingsChange);
+        });
+        // --- Keyboard Shortcuts for Editors ---
+        function handleTabKey(e, editor) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const tabString = '    ';
+                document.execCommand('insertText', false, tabString);
+                clearTimeout(window.saveTimeout);
+                window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+            }
+        }
+        function handleEnterKey(e, editor) {
+            if (e.key === 'Enter') {
+                setTimeout(() => {
+                    clearTimeout(window.saveTimeout);
+                    window.saveTimeout = setTimeout(saveToLocalStorage, 1000);
+                }, 100);
+            }
+        }
+        document.getElementById('inputEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+        document.getElementById('outputEditor').addEventListener('keydown', function(e) {
+            handleTabKey(e, this);
+            handleEnterKey(e, this);
+        });
+        // Live mode
+        let liveModeEnabled = false;
+        document.getElementById('liveMode').addEventListener('change', function() {
+            liveModeEnabled = this.checked;
+            if (liveModeEnabled) {
+                document.getElementById('inputEditor').addEventListener('input', liveModeHandler);
+            } else {
+                document.getElementById('inputEditor').removeEventListener('input', liveModeHandler);
+            }
+        });
+        function liveModeHandler() {
+            encodeBase64();
+        }
+        // File upload support
+        const fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const encoding = document.getElementById('encodingSelect').value;
+                if (fileInput.dataset.mode === 'decode') {
+                    // Decode file from Base64
+                    const b64 = e.target.result.split(',')[1];
+                    const bytes = base64Decode(b64);
+                    setEditorContent('output', bytesToString(bytes, encoding));
+                } else {
+                    // Encode file to Base64
+                    const b64 = e.target.result.split(',')[1];
+                    setEditorContent('output', b64);
+                }
+                showSuccess('✅ File processed!');
+            };
+            if (fileInput.dataset.mode === 'decode') {
+                reader.readAsDataURL(file); // Read as Base64
+            } else {
+                reader.readAsDataURL(file); // Read as Base64
+            }
+        });
+        // Auto-detect encoding (placeholder, real detection is complex)
+        function autoDetectEncoding(bytes) {
+            // For now, default to UTF-8
+            return 'utf-8';
+        }
+    </script>
+</body>
+</html> 
