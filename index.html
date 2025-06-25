@@ -8,7 +8,26 @@
     <title>Proximity Tools - Free Online Developer Utilities & Tools</title>
     <meta name="title" content="Proximity Tools - Free Online Developer Utilities & Tools">
     <meta name="description" content="Collection of free online developer tools including JSON formatter, text diff checker, and more. Professional utilities for developers, writers, and data analysts.">
-    <meta name="keywords" content="online tools, developer utilities, json formatter, text diff, code formatter, free tools, web utilities, proximity tools">
+    <meta name="keywords" content="online tools, developer utilities, json formatter, text diff, code formatter, free tools, web utilities, proximity tools, api tester, base64 encoder, base64 decoder, http client, rest api testing, online utilities">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#2dd4bf">
+    <meta name="msapplication-TileColor" content="#2dd4bf">
+    <meta name="application-name" content="Proximity Tools">
+    <meta name="apple-mobile-web-app-title" content="Proximity Tools">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="US">
+    <meta name="geo.placename" content="United States">
+    <meta name="ICBM" content="39.7392, -104.9903">
+    
+    <!-- Additional Favicon Sizes -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="author" content="Proximity Tools">
@@ -32,6 +51,13 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://proximity-tools.com/">
     
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
@@ -43,6 +69,19 @@
       "name": "Proximity Tools",
       "description": "Collection of free online developer utilities and tools",
       "url": "https://proximity-tools.com",
+      "image": "https://proximity-tools.com/proximity-tools-preview.png",
+      "sameAs": [
+        "https://github.com/dhruvkaushal11/OnlineTool"
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "name": "Proximity Tools",
+        "url": "https://proximity-tools.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://proximity-tools.com/logo.png"
+        }
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://proximity-tools.com/?search={search_term_string}",
@@ -54,14 +93,80 @@
           "name": "JSON Formatter",
           "description": "Free online JSON formatter, validator, and beautifier",
           "url": "https://proximity-tools.com/json-formatter/",
-          "applicationCategory": "DeveloperApplication"
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "JSON Validation",
+            "JSON Beautification",
+            "JSON Minification",
+            "Syntax Highlighting",
+            "Auto-save"
+          ]
         },
         {
           "@type": "WebApplication", 
           "name": "Text Diff Checker",
           "description": "Free online text comparison and difference checker",
           "url": "https://proximity-tools.com/text-diff/",
-          "applicationCategory": "DeveloperApplication"
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Text Comparison",
+            "Difference Highlighting",
+            "Side-by-side View",
+            "Statistics",
+            "Copy Function"
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Base64 Encoder/Decoder",
+          "description": "Free online Base64 encoding and decoding tool",
+          "url": "https://proximity-tools.com/base64-encoder/",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Base64 Encoding",
+            "Base64 Decoding",
+            "Multiple Encodings",
+            "Real-time Conversion",
+            "File Support"
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "API Tester",
+          "description": "Free online API testing and HTTP client tool",
+          "url": "https://proximity-tools.com/api-tester/",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "HTTP Requests",
+            "JSON Response Viewer",
+            "Authentication Support",
+            "Request History",
+            "Response Analytics"
+          ]
         }
       ]
     }
@@ -344,8 +449,8 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>Proximity Tools</h1>
-            <p>Professional collection of free online developer utilities. Format, validate, compare, and process your data with our powerful web-based tools.</p>
+            <h1 itemscope itemtype="https://schema.org/Organization" itemprop="name">Proximity Tools</h1>
+            <p itemprop="description">Professional collection of free online developer utilities. Format, validate, compare, and process your data with our powerful web-based tools.</p>
         </header>
 
         <section class="tools-grid">
@@ -377,18 +482,19 @@
                 <span class="tool-status">Available</span>
             </a>
 
-            <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
-                <div class="tool-icon" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); color: white;">🔧</div>
-                <h3>HTML/XML Formatter</h3>
-                <p>Format and beautify HTML, XML, and other markup languages with proper indentation and syntax highlighting.</p>
+            <a href="api-tester/" class="tool-card">
+                <div class="tool-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white;">🚀</div>
+                <h3>API Tester & HTTP Client</h3>
+                <p>Professional API testing tool with HTTP request builder and JSON response viewer. Test REST APIs with custom headers and authentication.</p>
                 <ul class="tool-features">
-                    <li>HTML/XML beautification</li>
-                    <li>Syntax validation and error detection</li>
-                    <li>Minification capabilities</li>
-                    <li>Custom formatting options</li>
+                    <li>All HTTP methods (GET, POST, PUT, DELETE, etc.)</li>
+                    <li>JSON response viewer with syntax highlighting</li>
+                    <li>Custom headers and authentication support</li>
+                    <li>Request history and response time tracking</li>
+                    <li>Copy responses and share results easily</li>
                 </ul>
-                <span class="tool-status coming-soon">Coming Soon</span>
-            </div>
+                <span class="tool-status">Available</span>
+            </a>
 
             <a href="base64-encoder/" class="tool-card">
                 <div class="tool-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white;">🔐</div>
@@ -408,7 +514,7 @@
         <section class="stats-section">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">3</div>
+                    <div class="stat-number">4</div>
                     <div class="stat-label">Tools Available</div>
                 </div>
                 <div class="stat-item">
